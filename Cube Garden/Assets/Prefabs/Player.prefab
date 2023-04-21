@@ -242,12 +242,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4752300250584826613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6371f85bdbab9fb4da7c72239625b4ca, type: 3}
+  m_Script: {fileID: 11500000, guid: ffa4d016f3da2de4d91580183b50eb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: ac0081276e24bf1448e6ed26487e0fcb, type: 2}
   moveForce: 1
-  jumpForce: 1
+  jumpForce: 5
   maxSpeed: 5
   playerCam: {fileID: 0}
 --- !u!1 &9167088070101711453
