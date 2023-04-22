@@ -46,9 +46,27 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ac7f84c-abec-450c-8f78-3ef81e2e00e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""aa791511-991e-4d53-88f0-ac83b25a500a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Create"",
+                    ""type"": ""Button"",
+                    ""id"": ""a90fee2f-ddb6-4d02-a681-d5071d2e9b7c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -59,42 +77,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""157bfb97-4be9-41a4-9390-20c253e67dbf"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Create"",
-                    ""type"": ""Button"",
-                    ""id"": ""c158ea26-07ab-4361-838e-149c3b33531e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SuperCreate"",
-                    ""type"": ""Value"",
-                    ""id"": ""809fe6b2-bfd7-4c04-97c5-47201b9d3ee2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""SpeedUpTime"",
-                    ""type"": ""Button"",
-                    ""id"": ""7c0edb5d-5393-4ee4-825e-252d95c59d14"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SlowDownTime"",
-                    ""type"": ""Button"",
-                    ""id"": ""98ef680b-1a2d-443b-831f-7f5b579fc374"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -290,56 +272,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b1214831-ab51-4294-bd9e-49083a0db2f1"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""5eba4ee3-3d7c-4e62-b1af-7649de17fda8"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Create"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f435fe36-ba2f-4184-8e8c-728b9a2ca6cd"",
+                    ""id"": ""29b4fb62-dd62-451e-85fb-71ae0be21be0"",
                     ""path"": ""<Keyboard>/c"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Create"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8cf5046c-b44f-4c77-b0ec-dfc892e26917"",
-                    ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse & Keyboard"",
-                    ""action"": ""SuperCreate"",
+                    ""action"": ""Create"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e5d515ac-cc77-4610-9b66-7182bfbde8b3"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""e8407dcd-fd37-4db8-ae5b-1af08709ae97"",
+                    ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpeedUpTime"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d9c98301-852e-457c-9f02-4f561ee6af3e"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SlowDownTime"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Create"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -419,12 +379,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Create = m_Player.FindAction("Create", throwIfNotFound: true);
-        m_Player_SuperCreate = m_Player.FindAction("SuperCreate", throwIfNotFound: true);
-        m_Player_SpeedUpTime = m_Player.FindAction("SpeedUpTime", throwIfNotFound: true);
-        m_Player_SlowDownTime = m_Player.FindAction("SlowDownTime", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -491,24 +449,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Create;
-    private readonly InputAction m_Player_SuperCreate;
-    private readonly InputAction m_Player_SpeedUpTime;
-    private readonly InputAction m_Player_SlowDownTime;
+    private readonly InputAction m_Player_Look;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Create => m_Wrapper.m_Player_Create;
-        public InputAction @SuperCreate => m_Wrapper.m_Player_SuperCreate;
-        public InputAction @SpeedUpTime => m_Wrapper.m_Player_SpeedUpTime;
-        public InputAction @SlowDownTime => m_Wrapper.m_Player_SlowDownTime;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -524,24 +478,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
             @Create.started += instance.OnCreate;
             @Create.performed += instance.OnCreate;
             @Create.canceled += instance.OnCreate;
-            @SuperCreate.started += instance.OnSuperCreate;
-            @SuperCreate.performed += instance.OnSuperCreate;
-            @SuperCreate.canceled += instance.OnSuperCreate;
-            @SpeedUpTime.started += instance.OnSpeedUpTime;
-            @SpeedUpTime.performed += instance.OnSpeedUpTime;
-            @SpeedUpTime.canceled += instance.OnSpeedUpTime;
-            @SlowDownTime.started += instance.OnSlowDownTime;
-            @SlowDownTime.performed += instance.OnSlowDownTime;
-            @SlowDownTime.canceled += instance.OnSlowDownTime;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -552,24 +500,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
             @Create.started -= instance.OnCreate;
             @Create.performed -= instance.OnCreate;
             @Create.canceled -= instance.OnCreate;
-            @SuperCreate.started -= instance.OnSuperCreate;
-            @SuperCreate.performed -= instance.OnSuperCreate;
-            @SuperCreate.canceled -= instance.OnSuperCreate;
-            @SpeedUpTime.started -= instance.OnSpeedUpTime;
-            @SpeedUpTime.performed -= instance.OnSpeedUpTime;
-            @SpeedUpTime.canceled -= instance.OnSpeedUpTime;
-            @SlowDownTime.started -= instance.OnSlowDownTime;
-            @SlowDownTime.performed -= instance.OnSlowDownTime;
-            @SlowDownTime.canceled -= instance.OnSlowDownTime;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -655,12 +597,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
         void OnCreate(InputAction.CallbackContext context);
-        void OnSuperCreate(InputAction.CallbackContext context);
-        void OnSpeedUpTime(InputAction.CallbackContext context);
-        void OnSlowDownTime(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

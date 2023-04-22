@@ -1,0 +1,118 @@
+using UnityEngine;
+
+public class CubeRoamState : CubeBaseState
+{
+	private CubeMovement movement;
+	//private CubeWorker work;
+
+	private Vector3 target;
+	private float moveRange;
+
+	private TickTimer moveDelay;
+	private TickTimer findDelay;
+	private TickTimer breedDelay;
+
+	public CubeRoamState(CubeStateManager manager)
+	{
+		this.manager = manager;
+		stats = manager.cube.stats;
+		stateID = 2;
+
+		movement = manager.cube.movement;
+		//work = manager.npc.work;
+
+		target = manager.transform.position;
+		moveRange = 10f;
+
+		moveDelay = new TickTimer(FindNewDestination);
+		moveDelay.Stop();
+		findDelay = new TickTimer(FindWork);
+		findDelay.Stop();
+		breedDelay = new TickTimer(BreedCheck);
+		breedDelay.Stop();
+			
+		manager.cube.SetTarget(null);
+	}
+
+	override public void EnterState()
+	{
+		//Debug.Log("Roaming");
+
+		foreach(GameObject effect in manager.stateEffects)
+		{
+			effect.SetActive(false);
+		}
+		//manager.stateEffects[stateID].SetActive(true);
+
+		moveDelay.Restart();
+		findDelay.Restart();
+
+		//if(manager.cube.clan != null && !manager.cube.clan.IsFull())
+			//breedDelay.Restart();
+
+		target = manager.transform.position;
+		manager.cube.SetTarget(null);
+	}
+
+	public override void LeaveState()
+	{
+		findDelay.Stop();
+		moveDelay.Stop();
+		breedDelay.Stop();
+	}
+
+	override public void UpdateState() {}
+
+	private void Search()
+	{
+		//int idleValue = manager.cube.stats.Idleness.GetValue();
+		//if(Random.value > 0.9f + (float)idleValue * 0.01f)
+		//{
+			//manager.SwitchState(manager.SearchState);
+		//}
+	}
+
+	private void FindNewDestination()
+	{
+		if(movement == null) return;//bandaid!
+		
+		//int idleValue = manager.cube.stats.Idleness.GetValue();
+		target = movement.FindNewDestination(moveRange);
+		Search();
+		
+		//moveDelay.Restart(Random.Range(10 + idleValue, 50 + idleValue));
+	}
+
+	private void FindWork()
+	{
+		//if(work == null) return;//bandaid!
+
+		//int idleValue = manager.npc.stats.Idleness.GetValue();
+		//if(!work.FindWork())
+			//findDelay.Restart(Random.Range(5, 25 + idleValue));
+		//else
+			//Debug.Log("Finding work from roam");
+	}
+
+	private void BreedCheck()
+	{
+		//int idleValue = manager.cube.stats.Idleness.GetValue();
+		//Debug.Log(idleValue);
+		//if(Random.value > 0.90f - (float)idleValue * 0.01f)
+			//manager.SwitchState(manager.BreedState);
+		//else if(manager.npc.clan != null && !manager.npc.clan.IsFull())
+			//breedDelay.Restart(25 - idleValue);
+	}	
+
+	override public Vector3 GetTarget()
+	{
+		//Debug.Log("From state" + target);
+		return target;
+	}
+
+	public override void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireSphere(manager.transform.position, moveRange);
+	}
+}

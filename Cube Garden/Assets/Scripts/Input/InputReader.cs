@@ -40,13 +40,10 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions, PlayerI
 	public event Action JumpEvent;
 	public event Action JumpCancelledEvent;
 
-	public event Action LookEvent;
-
+	public event Action InteractEvent;
 	public event Action CreateEvent;
-	public event Action SuperCreateEvent;
 
-	public event Action SpeedUpEvent;
-	public event Action SlowDownEvent;
+	public event Action LookEvent;
 
 	public event Action PauseEvent;
 	public event Action ResumeEvent;
@@ -67,9 +64,12 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions, PlayerI
 			JumpCancelledEvent?.Invoke();
 	}
 
-	public void OnLook(InputAction.CallbackContext context)
+	public void OnInteract(InputAction.CallbackContext context)
 	{
-		LookEvent?.Invoke();
+		if(context.performed)
+		{
+			InteractEvent?.Invoke();
+		}
 	}
 
 	public void OnCreate(InputAction.CallbackContext context)
@@ -80,25 +80,9 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions, PlayerI
 		}
 	}
 
-	public void OnSuperCreate(InputAction.CallbackContext context)
+	public void OnLook(InputAction.CallbackContext context)
 	{
-		SuperCreateEvent?.Invoke();
-	}
-
-	public void OnSpeedUpTime(InputAction.CallbackContext context)
-	{
-		if(context.performed)
-		{
-			SpeedUpEvent?.Invoke();
-		}
-	}
-
-	public void OnSlowDownTime(InputAction.CallbackContext context)
-	{
-		if(context.performed)
-		{
-			SlowDownEvent?.Invoke();
-		}
+		LookEvent?.Invoke();
 	}
 
 	 public void OnPause(InputAction.CallbackContext context)
@@ -118,5 +102,4 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions, PlayerI
 			SetPlayer();
 		}
 	}
-
 }

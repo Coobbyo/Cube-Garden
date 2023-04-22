@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "5ac7f84c-abec-450c-8f78-3ef81e2e00e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "aa791511-991e-4d53-88f0-ac83b25a500a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Create",
+                    "type": "Button",
+                    "id": "a90fee2f-ddb6-4d02-a681-d5071d2e9b7c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -37,42 +55,6 @@
                     "type": "PassThrough",
                     "id": "157bfb97-4be9-41a4-9390-20c253e67dbf",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Create",
-                    "type": "Button",
-                    "id": "c158ea26-07ab-4361-838e-149c3b33531e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SuperCreate",
-                    "type": "Value",
-                    "id": "809fe6b2-bfd7-4c04-97c5-47201b9d3ee2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "SpeedUpTime",
-                    "type": "Button",
-                    "id": "7c0edb5d-5393-4ee4-825e-252d95c59d14",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SlowDownTime",
-                    "type": "Button",
-                    "id": "98ef680b-1a2d-443b-831f-7f5b579fc374",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -268,56 +250,34 @@
                 },
                 {
                     "name": "",
-                    "id": "b1214831-ab51-4294-bd9e-49083a0db2f1",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "5eba4ee3-3d7c-4e62-b1af-7649de17fda8",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Create",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "f435fe36-ba2f-4184-8e8c-728b9a2ca6cd",
+                    "id": "29b4fb62-dd62-451e-85fb-71ae0be21be0",
                     "path": "<Keyboard>/c",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Create",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8cf5046c-b44f-4c77-b0ec-dfc892e26917",
-                    "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
-                    "action": "SuperCreate",
+                    "action": "Create",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e5d515ac-cc77-4610-9b66-7182bfbde8b3",
-                    "path": "<Keyboard>/e",
+                    "id": "e8407dcd-fd37-4db8-ae5b-1af08709ae97",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "SpeedUpTime",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d9c98301-852e-457c-9f02-4f561ee6af3e",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SlowDownTime",
+                    "groups": "Gamepad",
+                    "action": "Create",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
