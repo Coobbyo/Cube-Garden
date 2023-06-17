@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	private Rigidbody rb;
+	private Animator animator;
 
 	[SerializeField] private InputReader input;
 
@@ -19,10 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
 	[SerializeField] private Camera playerCam;
 
-
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
+		animator = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -31,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
 		input.JumpEvent += HandleJump;
 		input.JumpCancelledEvent += HandleCancelledJump;
+
+		input.DanceEvent += HandleDance;
 	}
 
 	private void FixedUpdate()
@@ -59,6 +62,13 @@ public class PlayerMovement : MonoBehaviour
 		forceDirection = Vector3.zero;
 		forceDirection += dir.x * GetCameraRight(playerCam);
 		forceDirection += dir.y * GetCameraForward(playerCam);
+
+		if(dir.magnitude > 0f)
+		{
+			animator.SetBool("IsDancing", false);
+			animator.SetBool("IsMoving", true);
+		} else
+			animator.SetBool("IsMoving", false);
 	}
 
     private void HandleJump()
@@ -69,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
 	private void HandleCancelledJump()
 	{
 		isJumping = false;
+	}
+
+	private void HandleDance()
+	{
+		animator.SetBool("IsDancing", true);
 	}
 
 	private void Move()

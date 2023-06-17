@@ -42,6 +42,7 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions, PlayerI
 
 	public event Action InteractEvent;
 	public event Action CreateEvent;
+	public event Action DanceEvent;
 
 	public event Action LookEvent;
 
@@ -77,6 +78,14 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions, PlayerI
 		if(context.performed)
 		{
 			CreateEvent?.Invoke();
+		}
+	}
+
+	public void OnDance(InputAction.CallbackContext context)
+	{
+		if(context.performed)
+		{
+			DanceEvent?.Invoke();
 		}
 	}
 

@@ -8,6 +8,7 @@ public class CubeManager : MonoBehaviour
 	[SerializeField] private Transform eggPrefab;
 	[SerializeField] private Color[] colors;
 	[SerializeField] private Material[] materials;
+	[SerializeField] private Texture[] textures;
 
 	[SerializeField] private InputReader input;
 	[SerializeField] private CubeCreateUI createMenu;
@@ -46,7 +47,6 @@ public class CubeManager : MonoBehaviour
 		float spawnRadius = 10f;
 		Vector3 spawnPoint = new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
 		Transform cubeGO = Instantiate(cubePrefab, spawnPoint, Quaternion.identity, this.transform);
-		Transform eggGO = Instantiate(eggPrefab, spawnPoint, Quaternion.identity, this.transform);
 
 		Cube cube = cubeGO.GetComponent<Cube>();
 		for(int i = 0; i < cubes.Length; i++)
@@ -61,16 +61,24 @@ public class CubeManager : MonoBehaviour
 		return cube;
 	}
 
+	private void InstantiateEgg(MeshRenderer cubeRenderer, Vector3 spawnPoint)
+	{
+		Transform eggGO = Instantiate(eggPrefab, spawnPoint, Quaternion.identity, this.transform);
+		MeshRenderer eggRenderer = eggGO.GetComponentInChildren<MeshRenderer>();
+		eggRenderer.material = cubeRenderer.material;
+		eggRenderer.material.color = cubeRenderer.material.color;
+		eggRenderer.material.mainTexture = cubeRenderer.material.mainTexture;
+	}
+
 	public void CreateCube()
 	{
-		Cube cube = InstantiateCube();
+		int[] indices = new int[Cube.NUM_IDICIES];
 
-		cube.indices[1] = 0;
-		cube.indices[2] = Random.Range(0, 4);
+		indices[1] = Random.Range(0, materials.Length);
+		indices[2] = Random.Range(0, colors.Length);
+		indices[3] = 3; //indices[3] = Random.Range(0, textures.Length);
 
-		MeshRenderer cubeRenderer = cube.GetComponentInChildren<MeshRenderer>();
-		cubeRenderer.material = materials[cube.indices[1]];
-		cubeRenderer.material.color = colors[cube.indices[2]];
+		CreateCube(indices);
 	}
 
 	public void CreateCube(int[] indices, string name = "")
@@ -78,20 +86,26 @@ public class CubeManager : MonoBehaviour
 		Cube cube = InstantiateCube();
 		cube.nickname = name;
 
-		cube.indices[1] = indices[0];
-		cube.indices[2] = indices[1];
+		if(indices.Length != Cube.NUM_IDICIES) Debug.LogError("Wrong indices inputed");
+
+		for(int i = 0; i < Cube.NUM_IDICIES; i++)
+		{
+			cube.indices[i] = indices[i];
+		}
 
 		MeshRenderer cubeRenderer = cube.GetComponentInChildren<MeshRenderer>();
-		cubeRenderer.material = materials[indices[0]];
-		cubeRenderer.material.color = colors[indices[1]];
+		cubeRenderer.material = materials[indices[1]];
+		cubeRenderer.material.color = colors[indices[2]];
+		cubeRenderer.material.mainTexture = textures[indices[3]];
+
+		InstantiateEgg(cubeRenderer, cube.transform.position);
 	}
 	public void CreateCube(Cube cube)
 	{
 		int[] indices = cube.indices;
-		for (int i = 1; i < cube.indices.Length; i++)
-		{
-			indices[i - 1] = cube.indices[i];
-		}
+		
+		//indices[0];
+
 		CreateCube(indices, cube.ToString());
 	}
 	public void CreateCube(Cube parent1, Cube parent2) {}

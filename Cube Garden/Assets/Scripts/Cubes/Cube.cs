@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+	public const int NUM_IDICIES = 4;
+
     public CubeStateManager stateManager;
-    public int[] indices = new int[3];
+    public int[] indices = new int[NUM_IDICIES];
+	//0 is cube number
+	//1 is material
+	//2 is color
+	//3 is texture
 
     public string nickname;
     public float interactRange { get; private set; }
     public Transform target { get; private set; }
     public Transform HatSlot;
 
-    private string id;
+    private string id
+	{
+		get { return indices[0].ToString(); }
+	}
 
 	[HideInInspector] public CubeMovement movement;
 	[HideInInspector] public CubeStats stats;
@@ -27,7 +36,7 @@ public class Cube : MonoBehaviour
 
     private void Start()
 	{
-        id = indices[0].ToString();
+		//Debug.Log(indices.Length);
 		interactRange = 1f;
 		stats.OnHealthReachedZero += Die;
 	}
@@ -37,7 +46,7 @@ public class Cube : MonoBehaviour
 		target = t;
 	}
 
-    private void Die()
+    public void Die()
 	{
 		//Debug.Log("Fly you fools!");
         CubeManager.Instance.ReleaseCube(this);
@@ -52,9 +61,6 @@ public class Cube : MonoBehaviour
 
     override public string ToString()
 	{
-        if(nickname == "")
-		    return "Cube " + id;
-        else
-            return nickname;
+		return nickname == "" ? "Cube " + id : nickname;
 	}
 }

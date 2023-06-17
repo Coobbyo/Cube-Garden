@@ -18,12 +18,21 @@ public class CubeCreateUI : MonoBehaviour
 	public void CreateCube()
 	{
 		bool canClose = true;
-		canClose = int.TryParse(matField.text, out int material);
-		canClose = int.TryParse(colorField.text, out int color);
-		int[] indices = new int[2] { material, color };
+		int[] indices = new int[Cube.NUM_IDICIES];
+		if(canClose = int.TryParse(matField.text, out int material))
+			indices[1] = material;
+		if(canClose = int.TryParse(colorField.text, out int color))
+			indices[2] = color;
+
 		if(canClose)
 		{
 			CubeManager.Instance.CreateCube(indices, nameField.text);
+			Close();
+		}
+
+		if(matField.text == "" || colorField.text == "")
+		{
+			CubeManager.Instance.CreateCube();
 			Close();
 		}
 	}
